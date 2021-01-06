@@ -29,7 +29,7 @@ const GameArea = () => {
 
   useEffect(() => {
     const countDown = setInterval(() => {
-      if (seconds > 0) {
+      if (seconds > -1) {
         setSeconds(() => {
           return seconds - 1;
         });
@@ -48,7 +48,7 @@ const GameArea = () => {
 
       const showMoles = setInterval(() => {
         const randomHoleIndex = Math.floor(Math.random() * holes.length);
-        if (seconds > 0) {
+        if (seconds > -1) {
           setHoles((prevHoles) => {
             return prevHoles.map((prevHole, idx) => {
               if (idx === randomHoleIndex) {
@@ -94,11 +94,6 @@ const GameArea = () => {
         until={seconds}
         size={30}
         onFinish={() => {
-          <Modal visible={true}>
-            <View>
-              <Text>Your score is {score}</Text>
-            </View>
-          </Modal>;
           setScore(0), setSeconds(30);
         }}
         digitStyle={{ backgroundColor: '#FFF' }}
@@ -106,7 +101,6 @@ const GameArea = () => {
         timeToShow={['S']}
         timeLabels={{ s: '' }}
       />
-
       <Text
         style={
           Platform.OS === 'ios'
@@ -118,6 +112,12 @@ const GameArea = () => {
       >
         Score: {score}
       </Text>
+
+      {/* <Modal visible={true}>
+        <View>
+          <Text>Your score is {score}</Text>
+        </View>
+      </Modal> */}
 
       <FlatList
         data={holes}
