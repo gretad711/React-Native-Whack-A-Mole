@@ -13,3 +13,5 @@ web-build/
 .DS_Store
 
 assets/photoshop/
+
+GameAreaWithNotes.js

@@ -6,14 +6,12 @@ import {
   View,
   Platform,
   TouchableWithoutFeedback,
-  Modal,
 } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 
 import Styles from './Styles';
 import hole from '../assets/hole.png';
 import mole from '../assets/mole.png';
-import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 
 const GameArea = () => {
   const [holes, setHoles] = useState([
@@ -35,44 +33,35 @@ const GameArea = () => {
         });
       }
     }, 1000);
-    console.log(seconds);
     return () => {
       clearInterval(countDown);
     };
   }, [seconds]);
 
-  useEffect(
-    () => {
-      // useEffect should only ever return a function or undefined which is why you can't do asynchronous function in useEffect. Async functions return a promise.
-      //if (isRunning) {
-
-      const showMoles = setInterval(() => {
-        const randomHoleIndex = Math.floor(Math.random() * holes.length);
-        if (seconds > -1) {
-          setHoles((prevHoles) => {
-            return prevHoles.map((prevHole, idx) => {
-              if (idx === randomHoleIndex) {
-                return { ...prevHole, isShowing: !prevHole.isShowing };
-              }
-              return prevHole;
-            });
+  useEffect(() => {
+    const showMoles = setInterval(() => {
+      const randomHoleIndex = Math.floor(Math.random() * holes.length);
+      if (seconds > -1) {
+        setHoles((prevHoles) => {
+          return prevHoles.map((prevHole, idx) => {
+            if (idx === randomHoleIndex) {
+              return { ...prevHole, isShowing: !prevHole.isShowing };
+            }
+            return prevHole;
           });
-        } else {
-          setHoles((prevHoles) => {
-            return prevHoles.map((prevHole) => {
-              return { ...prevHole, isShowing: false };
-            });
+        });
+      } else {
+        setHoles((prevHoles) => {
+          return prevHoles.map((prevHole) => {
+            return { ...prevHole, isShowing: false };
           });
-        }
-      }, 300);
-      return () => {
-        clearInterval(showMoles);
-      };
-    }
-
-    // clean up function - useEffects performs side effects, it changes something. It leave a request that we're waiting to finish, it leaves a setInterval that's still running (I believe this causes setInterval to spiral out of control). If I return a function inside of the useEffect, when the useEffect runs again, it calls the cleanup function allowing me to clear the interval or finish up what I was doing. Also runs when the component is about to be unmounted
-    //}
-  );
+        });
+      }
+    }, 300);
+    return () => {
+      clearInterval(showMoles);
+    };
+  });
 
   const pressHandler = (key) => {
     setScore((prevScore) => {
@@ -94,6 +83,7 @@ const GameArea = () => {
         until={seconds}
         size={30}
         onFinish={() => {
+          alert('finished');
           setScore(0), setSeconds(30);
         }}
         digitStyle={{ backgroundColor: '#FFF' }}
@@ -101,6 +91,7 @@ const GameArea = () => {
         timeToShow={['S']}
         timeLabels={{ s: '' }}
       />
+
       <Text
         style={
           Platform.OS === 'ios'
@@ -112,12 +103,6 @@ const GameArea = () => {
       >
         Score: {score}
       </Text>
-
-      {/* <Modal visible={true}>
-        <View>
-          <Text>Your score is {score}</Text>
-        </View>
-      </Modal> */}
 
       <FlatList
         data={holes}
