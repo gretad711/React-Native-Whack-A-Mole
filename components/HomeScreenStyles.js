@@ -51,7 +51,6 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 30,
     backgroundColor: 'orange',
-
     marginBottom: 30,
   },
   whackedMoleImg: {

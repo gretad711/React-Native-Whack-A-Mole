@@ -7,11 +7,10 @@ import {
   Platform,
   TouchableWithoutFeedback,
 } from 'react-native';
-import CountDown from 'react-native-countdown-component';
-
 import Styles from './Styles';
 import hole from '../assets/hole.png';
 import mole from '../assets/mole.png';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const GameArea = () => {
   const [holes, setHoles] = useState([
@@ -27,21 +26,16 @@ const GameArea = () => {
 
   useEffect(() => {
     const countDown = setInterval(() => {
-      if (seconds > -1) {
+      if (seconds > 0) {
         setSeconds(() => {
           return seconds - 1;
         });
       }
     }, 1000);
-    return () => {
-      clearInterval(countDown);
-    };
-  }, [seconds]);
 
-  useEffect(() => {
     const showMoles = setInterval(() => {
       const randomHoleIndex = Math.floor(Math.random() * holes.length);
-      if (seconds > -1) {
+      if (seconds > 0) {
         setHoles((prevHoles) => {
           return prevHoles.map((prevHole, idx) => {
             if (idx === randomHoleIndex) {
@@ -60,8 +54,9 @@ const GameArea = () => {
     }, 300);
     return () => {
       clearInterval(showMoles);
+      clearInterval(countDown);
     };
-  });
+  }, [seconds]);
 
   const pressHandler = (key) => {
     setScore((prevScore) => {
@@ -79,26 +74,25 @@ const GameArea = () => {
 
   return (
     <View style={Styles.holes}>
-      <CountDown
-        until={seconds}
-        size={30}
-        onFinish={() => {
-          alert('finished');
-          setScore(0), setSeconds(30);
-        }}
-        digitStyle={{ backgroundColor: '#FFF' }}
-        digitTxtStyle={{ color: '#1CC625' }}
-        timeToShow={['S']}
-        timeLabels={{ s: '' }}
-      />
+      <Text
+        style={
+          Platform.OS === 'ios'
+            ? Styles.scoreTimeText
+            : Platform.OS === 'android'
+            ? Styles.scoreTimeTextAndroid
+            : Styles.scoreTimeText
+        }
+      >
+        Seconds Remaining: {seconds}
+      </Text>
 
       <Text
         style={
           Platform.OS === 'ios'
-            ? Styles.scoreText
+            ? Styles.scoreTimeText
             : Platform.OS === 'android'
-            ? Styles.scoreTextAndroid
-            : Styles.scoreText
+            ? Styles.scoreTimeTextAndroid
+            : Styles.scoreTimeText
         }
       >
         Score: {score}

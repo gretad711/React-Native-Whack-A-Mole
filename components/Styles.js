@@ -1,15 +1,42 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  scoreText: {
+  scoreTimeText: {
     color: 'white',
     fontSize: 30,
     fontWeight: 'bold',
   },
-  scoreTextAndroid: {
+  scoreTimeTextAndroid: {
     color: 'white',
     fontSize: 25,
     fontWeight: 'bold',
+  },
+  startResetText: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 30,
+    backgroundColor: 'orange',
+    width: 200,
+    marginHorizontal: 'auto',
+    marginTop: 10,
+  },
+  startResetTextIOS: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 30,
+    backgroundColor: 'orange',
+    marginBottom: 30,
+  },
+  startResetTextAndroid: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 30,
+    backgroundColor: 'orange',
+
+    marginBottom: 30,
   },
   holes: {
     marginTop: 10,
