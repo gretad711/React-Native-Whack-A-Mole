@@ -10,7 +10,6 @@ import {
 import Styles from './Styles';
 import hole from '../assets/hole.png';
 import mole from '../assets/mole.png';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const GameArea = () => {
   const [holes, setHoles] = useState([
