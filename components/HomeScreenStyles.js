@@ -36,6 +36,11 @@ export default StyleSheet.create({
     width: 200,
     marginHorizontal: 'auto',
     marginTop: 10,
+    borderRadius: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
   },
   navTextIOS: {
     color: 'white',
@@ -44,6 +49,7 @@ export default StyleSheet.create({
     fontSize: 30,
     backgroundColor: 'orange',
     marginBottom: 30,
+    
   },
   navTextAndroid: {
     color: 'white',

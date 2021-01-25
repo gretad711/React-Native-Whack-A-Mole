@@ -6,13 +6,16 @@ import {
   View,
   Platform,
   TouchableWithoutFeedback,
-  TouchableOpacity
+  TouchableOpacity,
+  ImageBackground
 } from 'react-native';
 import Styles from './Styles';
 import hole from '../assets/hole.png';
 import mole from '../assets/mole.png';
+import BG from '../assets/BG.png';
+import Header from './Header'
 
-const GameArea = (props) => {
+const LevelTwo = (props) => {
 
   const [holes, setHoles] = useState([
     { key: 1, hole: hole, mole: mole, isShowing: false },
@@ -22,18 +25,17 @@ const GameArea = (props) => {
     { key: 5, hole: hole, mole: mole, isShowing: false },
     { key: 6, hole: hole, mole: mole, isShowing: false },
   ]);
-  const [score, setScore] = useState(0);
+  let stateScore = props.navigation.state.params.score;
+  const [score, setScore] = useState(stateScore);
   const [seconds, setSeconds] = useState(30);
- 
+  
 
   useEffect(() => {
     const countDown = setInterval(() => {
       if (seconds > 0) {
-      
         setSeconds(() => {
           return seconds - 1;
         });
-     
       }
     }, 1000);
 
@@ -55,7 +57,7 @@ const GameArea = (props) => {
           });
         });
       }
-    }, 300);
+    }, 150);
     return () => {
       clearInterval(showMoles);
       clearInterval(countDown);
@@ -77,13 +79,10 @@ const GameArea = (props) => {
   };
 
   return (
+    <ImageBackground style={{ width: '100%', height: '100%' }} source={BG}>
+      <Header />
     <View style={Styles.holes}>
-
-      
-      {seconds > 0 ? (
-        <div>
-           
-          <Text
+      <Text
         style={
           Platform.OS === 'ios'
             ? Styles.scoreTimeText
@@ -94,9 +93,8 @@ const GameArea = (props) => {
       >
         Seconds Remaining: {seconds}
       </Text>
-           
-          <div>
-          <Text
+
+      <Text
         style={
           Platform.OS === 'ios'
             ? Styles.scoreTimeText
@@ -107,74 +105,42 @@ const GameArea = (props) => {
       >
         Score: {score}
       </Text>
-          </div>
 
-         <FlatList
-         data={holes}
-         numColumns={Platform.OS === 'ios' || Platform.OS === 'android' ? 2 : 3}
-         renderItem={({ item }) =>
-           item.isShowing ? (
-             <TouchableWithoutFeedback onPress={() => pressHandler(item.key)}>
-               <Image
-                 source={item.mole}
-                 style={
-                   Platform.OS === 'ios'
-                     ? Styles.moleImgIOS
-                     : Platform.OS === 'android'
-                     ? Styles.moleImgAndroid
-                     : Styles.moleImg
-                 }
-               />
-             </TouchableWithoutFeedback>
-           ) : (
-             <div>
-               <Image
-               source={item.hole}
-               style={
-                 Platform.OS === 'ios'
-                   ? Styles.holeImgIOS
-                   : Platform.OS === 'android'
-                   ? Styles.holeImgAndroid
-                   : Styles.holeImg
-               }
-             />
-             </div>
-           )
-         }
-         keyExtractor={(item) => item.key}
-       ></FlatList>
-        </div>) : (
-        <div>
-          <div>
-          <Text
-        style={
-          Platform.OS === 'ios'
-            ? Styles.scoreTimeText
-            : Platform.OS === 'android'
-            ? Styles.scoreTimeTextAndroid
-            : Styles.scoreTimeText
+      <FlatList
+        data={holes}
+        numColumns={Platform.OS === 'ios' || Platform.OS === 'android' ? 2 : 3}
+        renderItem={({ item }) =>
+          item.isShowing ? (
+            <TouchableWithoutFeedback onPress={() => pressHandler(item.key)}>
+              <Image
+                source={item.mole}
+                style={
+                  Platform.OS === 'ios'
+                    ? Styles.moleImgIOS
+                    : Platform.OS === 'android'
+                    ? Styles.moleImgAndroid
+                    : Styles.moleImg
+                }
+              />
+            </TouchableWithoutFeedback>
+          ) : (
+            <Image
+              source={item.hole}
+              style={
+                Platform.OS === 'ios'
+                  ? Styles.holeImgIOS
+                  : Platform.OS === 'android'
+                  ? Styles.holeImgAndroid
+                  : Styles.holeImg
+              }
+            />
+          )
         }
-      >
-        Final Score: {score}
-      </Text>
-          </div>
-      <TouchableOpacity onPress={() => props.navigation.navigate('LevelTwo', {score: score})}>
-        <Text
-          style={
-            Platform.OS === 'ios'
-              ? Styles.navTextIOS
-              : Platform.OS === 'android'
-              ? Styles.navTextAndroid
-              : Styles.navText
-          }
-        >
-          Start Level Two
-        </Text>
-      </TouchableOpacity>
-        </div>
-      )}
+        keyExtractor={(item) => item.key}
+      ></FlatList>
     </View>
+    </ImageBackground>
   );
 };
 
-export default GameArea;
+export default LevelTwo;

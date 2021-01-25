@@ -5,23 +5,36 @@ export default StyleSheet.create({
     color: 'white',
     fontSize: 30,
     fontWeight: 'bold',
+    textAlign: 'center',
+    justifyContent: 'center',
+    display: 'flex'
   },
   scoreTimeTextAndroid: {
     color: 'white',
     fontSize: 25,
     fontWeight: 'bold',
+    textAlign: 'center',
+    justifyContent: 'center',
+    display: 'flex'
   },
-  startResetText: {
+  navText: {
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 30,
     backgroundColor: 'orange',
-    width: 200,
+    width: 'auto',
     marginHorizontal: 'auto',
     marginTop: 10,
+    padding: 5,
+    borderRadius: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    
   },
-  startResetTextIOS: {
+  navTextIOS: {
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
@@ -29,13 +42,12 @@ export default StyleSheet.create({
     backgroundColor: 'orange',
     marginBottom: 30,
   },
-  startResetTextAndroid: {
+  navTextAndroid: {
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 30,
     backgroundColor: 'orange',
-
     marginBottom: 30,
   },
   holes: {
@@ -85,10 +97,12 @@ export default StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     color: '#FFF',
+    textAlign: 'center'
   },
   timerTextAndroid: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#FFF',
+    textAlign: 'center'
   },
 });

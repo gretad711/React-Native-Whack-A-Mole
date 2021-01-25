@@ -3,6 +3,7 @@ import { createAppContainer } from 'react-navigation';
 import HomeScreen from '../components/HomeScreen';
 import GameScreen from '../components/GameScreen';
 import GameArea from '../components/GameArea';
+import LevelTwo from '../components/LevelTwo'
 
 const screens = {
   HomeScreen: {
@@ -11,9 +12,9 @@ const screens = {
   GameScreen: {
     screen: GameScreen,
   },
-  GameArea: {
-    screen: GameArea,
-  },
+  LevelTwo: {
+    screen: LevelTwo,
+  }
 };
 
 const HomeStack = createStackNavigator(screens);
