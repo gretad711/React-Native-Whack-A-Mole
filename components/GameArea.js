@@ -6,11 +6,12 @@ import {
   View,
   Platform,
   TouchableWithoutFeedback,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import Styles from './Styles';
 import hole from '../assets/hole.png';
 import mole from '../assets/mole.png';
+
 
 const GameArea = (props) => {
 
@@ -23,10 +24,10 @@ const GameArea = (props) => {
     { key: 6, hole: hole, mole: mole, isShowing: false },
   ]);
   const [score, setScore] = useState(0);
-  const [seconds, setSeconds] = useState(30);
- 
+  const [seconds, setSeconds] = useState(5);
 
   useEffect(() => {
+    // this code fires when the app loads
     const countDown = setInterval(() => {
       if (seconds > 0) {
       
@@ -60,6 +61,7 @@ const GameArea = (props) => {
       clearInterval(showMoles);
       clearInterval(countDown);
     };
+    
   }, [seconds]);
 
   const pressHandler = (key) => {
@@ -158,6 +160,14 @@ const GameArea = (props) => {
         Final Score: {score}
       </Text>
           </div>
+          <div >
+            <br />
+            <br />
+      <Text style={Styles.levelTwoText}>Level 2: Try to whack the moles as they appear and disappear even faster!</Text>
+      <br />
+      <br />
+      </div>
+      
       <TouchableOpacity onPress={() => props.navigation.navigate('LevelTwo', {score: score})}>
         <Text
           style={
@@ -171,6 +181,7 @@ const GameArea = (props) => {
           Start Level Two
         </Text>
       </TouchableOpacity>
+      
         </div>
       )}
     </View>

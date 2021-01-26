@@ -32,7 +32,6 @@ export default StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    
   },
   navTextIOS: {
     color: 'white',
@@ -104,5 +103,47 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFF',
     textAlign: 'center'
+  },
+  levelTwoText: {
+    color: 'white',
+    fontSize: 20,
+    width: '50%', 
+  },
+  inputBox: {
+    backgroundColor: 'white',
+    border: '2px green solid',
+    borderRadius: 6
+  },
+  submitNameText: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    backgroundColor: 'orange',
+    width: 'auto',
+    marginHorizontal: 'auto',
+    marginTop: 10,
+    padding: 5,
+    borderRadius: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+  },
+  navTextIOS: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 30,
+    backgroundColor: 'orange',
+    marginBottom: 30,
+  },
+  navTextAndroid: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 30,
+    backgroundColor: 'orange',
+    marginBottom: 30,
   },
 });

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 
 import BG from '../assets/BG.png';
 import HomeScreenWhackedMole from '../assets/HomeScreenWhackedMole.png';

@@ -27,6 +27,10 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 20,
   },
+  input: { 
+    backgroundColor: 'white',
+    width: 200
+  },
   navText: {
     color: 'white',
     textAlign: 'center',
